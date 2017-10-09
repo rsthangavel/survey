@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     })
   }
   addAnotherCard(){
-    this.currentCard=+1;
+    this.currentCard+=1;
    this.cards.push(this.currentCard);
    
   }
@@ -31,13 +31,7 @@ export class AppComponent implements OnInit {
     })
   }
   removeCard(e){
-     this.cards = this.cards.filter((array, index)=>{
-       if(index !== e){
-         return true;
-       }
-       else{
-        return false;
-       }
-     })
+   
+    this.cards.splice(e-1,1);
   }
 }

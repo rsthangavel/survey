@@ -12,4 +12,9 @@
 
 .mat-card{
     background-color: lightgray;
+    margin: 20px 0 20px;
+}
+.mat-mini-fab{
+    position : relative;
+    top : 35px;
 }

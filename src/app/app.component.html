@@ -1,7 +1,20 @@
 
 <mat-toolbar color="primary">My App</mat-toolbar>
 <div class="row">
-  <div class="col-md-12">
+<div class="col-md-6">
+  <div *ngFor="let card of cards; let i= index" >
+      
+          <app-create-card [cardNumber]="i+1" (currentCardNumber)="removeCard($event)"></app-create-card>  
+        </div>
+
+
+<button mat-raised-button color="accent" (click)="addAnotherCard()">Add Another</button>
+
+      </div>
+
+
+
+  <div class="col-md-6 well">
       <mat-form-field>
           <input matInput placeholder="Enter Doctor Name">
         </mat-form-field>
@@ -14,28 +27,21 @@
         <mat-form-field>
           <input matInput placeholder="Enter Question">
         </mat-form-field>
-  </div>
-  
-<div *ngFor="let data of outputData; let i=index" class="row">
-  <pre class="col-md-8 col-md-offset-1">{{i+1}}<strong>{{data.question}}?</strong><p>{{data.answer}}</p>
+
+ 
+<h3 style="text-align:center">Created Question & Answer list</h3>   
+<div *ngFor="let data of outputData; let i=index">
+  <pre class="col-md-10">{{i+1}}<strong>{{data.question}}?</strong><p>{{data.answer}}</p>
   <div *ngFor="let subquestion of data.subQuestionAnswer">
     <strong>{{subquestion.question}}</strong>
     <p>{{subquestion.answer}}</p>
   </div>
   </pre>
   <button type="button" mat-mini-fab color="warn" class="col-md-2" (click)="removeQuestion(i)">
-    <mat-icon class="md-24" aria-label="Example icon-button with a heart icon">remove</mat-icon>
+    <mat-icon class="md-24" aria-label="">remove</mat-icon>
   </button>
 </div>
-
-
-  <div *ngFor="let card of cards; let i= index">
-      <div class="card col-md-8 col-md-offset-2">
-          <app-create-card [cardNumber]="i+1" (currentCardNumber)="removeCard($event)"></app-create-card>  
-      </div>
-    
-  </div>
-
+<button *ngIf="outputData[0]" class="col-md-3 col-md-offset-10" mat-raised-button color="accent">Submit</button> 
+ </div>
+ 
 </div>
-<button mat-raised-button color="accent" (click)="addAnotherCard()">Add Another</button>
-<button mat-raised-button color="accent">Submit</button>
