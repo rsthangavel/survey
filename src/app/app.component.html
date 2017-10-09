@@ -1,20 +1,41 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<mat-toolbar color="primary">My App</mat-toolbar>
+<div class="row">
+  <div class="col-md-12">
+      <mat-form-field>
+          <input matInput placeholder="Enter Doctor Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter Hospital Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Specialist">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter Question">
+        </mat-form-field>
+  </div>
+  
+<div *ngFor="let data of outputData; let i=index" class="row">
+  <pre class="col-md-8 col-md-offset-1">{{i+1}}<strong>{{data.question}}?</strong><p>{{data.answer}}</p>
+  <div *ngFor="let subquestion of data.subQuestionAnswer">
+    <strong>{{subquestion.question}}</strong>
+    <p>{{subquestion.answer}}</p>
+  </div>
+  </pre>
+  <button type="button" mat-mini-fab color="warn" class="col-md-2" (click)="removeQuestion(i)">
+    <mat-icon class="md-24" aria-label="Example icon-button with a heart icon">remove</mat-icon>
+  </button>
+</div>
+
+
+  <div *ngFor="let card of cards; let i= index">
+      <div class="card col-md-8 col-md-offset-2">
+          <app-create-card [cardNumber]="i+1" (currentCardNumber)="removeCard($event)"></app-create-card>  
+      </div>
+    
+  </div>
+
+</div>
+<button mat-raised-button color="accent" (click)="addAnotherCard()">Add Another</button>
+<button mat-raised-button color="accent">Submit</button>

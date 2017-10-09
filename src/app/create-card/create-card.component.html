@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>QUESTION {{cardNumber}}</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="surveyForm" (ngSubmit)="save(surveyForm)">
+    <mat-card-content>
+      1
+          <mat-form-field  class="row question">
+            <input matInput placeholder="Enter Question"  formControlName="question">
+          </mat-form-field>    
+          <mat-radio-group formControlName="answer" class="row">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+            <mat-radio-button value="3">Others</mat-radio-button>
+          </mat-radio-group>
+          <div formArrayName="subQuestionAnswer"> 
+            <div *ngFor="let question of surveyForm.controls.subQuestionAnswer.controls; let i=index">
+              {{i+2}}
+              <div [formGroupName]="i">
+                <div class="row">
+                <mat-form-field class="question">
+                    <input matInput placeholder="Enter Question" formControlName="question"> 
+                   
+                  </mat-form-field>
+                  <button type="button" mat-mini-fab color="warn" (click)="removeSubQuestion(i)">
+                      <mat-icon class="md-24" aria-label="Example icon-button with a heart icon">remove</mat-icon>
+                    </button>
+                  </div>
+                  <mat-radio-group formControlName="answer" class="row">
+                      <mat-radio-button value="1">Yes</mat-radio-button>
+                      <mat-radio-button value="2">No</mat-radio-button>
+                      <mat-checkbox value="3" (click)="answerField = !answerField">Others</mat-checkbox>
+                      <mat-form-field *ngIf="answerField">  
+                          <input matInput placeholder="Enter Question" formControlName="answer"> 
+                        </mat-form-field>
+                  </mat-radio-group>
+                
+               
+              </div>
+            </div>
+          </div>
+         
+    </mat-card-content>
+    <button type="button" mat-mini-fab color="primary" (click)="addSubQuestion()">
+      <mat-icon class="md-24" aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
+    <mat-card-actions>
+      <button type="submit"  mat-raised-button color="accent">Save</button>
+    </mat-card-actions>
+       
+  </form>
+</mat-card>
