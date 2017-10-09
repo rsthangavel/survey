@@ -10,9 +10,12 @@
             <input matInput placeholder="Enter Question"  formControlName="question">
           </mat-form-field>    
           <mat-radio-group formControlName="answer" class="row">
-            <mat-radio-button value="1">Yes</mat-radio-button>
-            <mat-radio-button value="2">No</mat-radio-button>
-            <mat-radio-button value="3">Others</mat-radio-button>
+            <mat-radio-button value="Yes">Yes</mat-radio-button>
+            <mat-radio-button value="No">No</mat-radio-button>
+            <mat-checkbox  (click)="answerField = !answerField">Others</mat-checkbox>
+            <mat-form-field *ngIf="answerField">  
+              <input matInput placeholder="Enter Answer" formControlName="answer"> 
+            </mat-form-field>
           </mat-radio-group>
           <div formArrayName="subQuestionAnswer"> 
             <div *ngFor="let question of surveyForm.controls.subQuestionAnswer.controls; let i=index">
@@ -28,11 +31,11 @@
                     </button>
                   </div>
                   <mat-radio-group formControlName="answer" class="row">
-                      <mat-radio-button value="1">Yes</mat-radio-button>
-                      <mat-radio-button value="2">No</mat-radio-button>
-                      <mat-checkbox value="3" (click)="answerField = !answerField">Others</mat-checkbox>
+                      <mat-radio-button value="Yes">Yes</mat-radio-button>
+                      <mat-radio-button value="No">No</mat-radio-button>
+                      <mat-checkbox (click)="answerField = !answerField">Others</mat-checkbox>
                       <mat-form-field *ngIf="answerField">  
-                          <input matInput placeholder="Enter Question" formControlName="answer"> 
+                          <input matInput placeholder="Enter Answer" formControlName="answer"> 
                         </mat-form-field>
                   </mat-radio-group>
                 

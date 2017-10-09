@@ -31,7 +31,7 @@
  
 <h3 style="text-align:center">Created Question & Answer list</h3>   
 <div *ngFor="let data of outputData; let i=index">
-  <pre class="col-md-10">{{i+1}}<strong>{{data.question}}?</strong><p>{{data.answer}}</p>
+  <pre class="col-md-10">{{i+1}})&nbsp;<strong>{{data.question}}?</strong><p class="answer">{{data.answer}}</p>
   <div *ngFor="let subquestion of data.subQuestionAnswer">
     <strong>{{subquestion.question}}</strong>
     <p>{{subquestion.answer}}</p>
