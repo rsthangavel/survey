@@ -18,7 +18,7 @@
             </mat-form-field>
           </mat-radio-group>
           <div formArrayName="subQuestionAnswer"> 
-            <div *ngFor="let question of surveyForm.controls.subQuestionAnswer.controls; let i=index">
+            <div *ngFor="let question of surveyForm['controls'].subQuestionAnswer['controls']; let i=index">
               {{i+2}}
               <div [formGroupName]="i">
                 <div class="row">

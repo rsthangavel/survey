@@ -1,41 +1,40 @@
 
 <mat-toolbar color="primary">My App</mat-toolbar>
 <div class="row">
+
+  <!--question card dynamically created  -->
 <div class="col-md-6">
-  <div *ngFor="let card of cards; let i= index" >
-      
-          <app-create-card [cardNumber]="i+1" (currentCardNumber)="removeCard($event)"></app-create-card>  
-        </div>
+  <div *ngFor="let card of cards; let i= index" >    
+    <app-create-card [cardNumber]="i+1" (currentCardNumber)="removeCard($event)"></app-create-card>  
+  </div>
+  <button mat-raised-button color="accent" (click)="addAnotherCard()">Add Another</button>
+</div>
 
-
-<button mat-raised-button color="accent" (click)="addAnotherCard()">Add Another</button>
-
-      </div>
-
-
-
-  <div class="col-md-6 well">
-      <mat-form-field>
-          <input matInput placeholder="Enter Doctor Name">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Enter Hospital Name">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Specialist">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Enter Question">
-        </mat-form-field>
-
- 
+<!-- Finall question answer result -->
+<div class="col-md-6 well">
+  <div class="col-md-offset-3 col-md-8">
+  <mat-form-field>
+    <input matInput placeholder="Enter Doctor Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Enter Hospital Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Specialist">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Enter Question">
+  </mat-form-field>
+</div>
 <h3 style="text-align:center">Created Question & Answer list</h3>   
+
 <div *ngFor="let data of outputData; let i=index">
   <pre class="col-md-10">{{i+1}})&nbsp;<strong>{{data.question}}?</strong><p class="answer">{{data.answer}}</p>
-  <div *ngFor="let subquestion of data.subQuestionAnswer">
-    <strong>{{subquestion.question}}</strong>
-    <p>{{subquestion.answer}}</p>
-  </div>
+    <code class="underline">Sub Question Answers</code>
+    <div *ngFor="let subquestion of data.subQuestionAnswer; let i=index">
+      <strong>{{i+1}})&nbsp;{{subquestion.question}}?</strong>
+      <p class="answer">{{subquestion.answer}}</p>
+    </div>
   </pre>
   <button type="button" mat-mini-fab color="warn" class="col-md-2" (click)="removeQuestion(i)">
     <mat-icon class="md-24" aria-label="">remove</mat-icon>
